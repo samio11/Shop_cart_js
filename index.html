@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <main>
+        <section>
+            <h2 class="text-3xl text-center font-medium">My Card Section</h2>
+            <div class="max-w-screen-xl mx-auto grid grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="card bg-base-100 shadow-xl">
+                    <figure class="px-10 pt-10">
+                        <img src="./mac1.jpg" alt="Shoes" class="rounded-xl w-4/5" />
+                    </figure>
+                    <div class="card-body items-center text-center" id="main_part_01">
+                        <h2 class="card-title">Macbook M2</h2>
+                        <p class="text-sm lg:text-2xl">This is a great laptop.</p>
+                        <p class="font-semibold">Price:- 1250 $</p>
+                        <div class="card-actions">
+                            <button onclick="btnClicked('main_part_01')" class="btn btn-primary" id="mac">Buy
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <figure class="px-10 pt-10">
+                        <img src="./assus.png" alt="Shoes" class="rounded-xl w-4/5" />
+                    </figure>
+                    <div class="card-body items-center text-center" id="main_part_02">
+                        <h2 class="card-title">Assus D570DD</h2>
+                        <p class="text-sm lg:text-2xl">This is a great Windows Laptop</p>
+                        <p class="font-semibold">Price:- 1030$</p>
+                        <div class="card-actions">
+                            <button onclick="btnClicked('main_part_02')" class="btn btn-primary" id="assus">Buy
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <figure class="px-10 pt-10">
+                        <img src="./hp.jpg" alt="Shoes" class="rounded-xl w-4/5" />
+                    </figure>
+                    <div class="card-body items-center text-center" id="main_part_03">
+                        <h2 class="card-title">HP 450LLB</h2>
+                        <p class="text-sm lg:text-2xl">This is a Windows Laptop</p>
+                        <p class="font-semibold">Price:- 800$</p>
+                        <div class="card-actions">
+                            <button onclick="btnClicked('main_part_03')" class="btn btn-primary" id="hp">Buy
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <ul id="add_ul">
+
+                </ul>
+                <h3 id="t1">Total Net Price:- <span id="t2">00</span> $</h3>
+                <p>Discount:- <span id="t3">0</span>%</p>
+                <hr>
+                <h3>Grand Total:- <span id="t4">00</span>$</h3>
+            </div>
+        </section>
+    </main>
+    <script>
+        let arr1 = [];
+        function btnClicked(event) {
+            let main_container = document.getElementById(event);
+            let gettingValue = main_container.childNodes[5].innerText.split(' ')[1];
+            let gettingText = main_container.childNodes[1].innerText;
+            let price = parseFloat(gettingValue);
+
+            const li_container = document.getElementById('add_ul');
+            const count = li_container.childElementCount;
+
+            const li = document.createElement('p');
+            li.classList.add('my-4')
+            li.innerHTML = `${count + 1}. ${gettingText} and price is:- ${price}$`;
+            li_container.append(li);
+
+            // let gettingPreviousTotal = document.getElementById('t1').innerText.split(' ')[3];
+            // let previousTotal = parseFloat(gettingPreviousTotal);
+            arr1.push(price);
+            console.log(arr1);
+            let sum = 0;
+            for (let i of arr1) {
+                sum += i;
+            }
+            console.log(sum);
+            document.getElementById('t2').innerText = sum;
+            document.getElementById('t4').innerText = sum;
+            if(sum >= 4000){
+               document.getElementById('t3').innerText = 5;
+               const discountPrice = sum - ((sum*5)/100);
+               document.getElementById('t4').innerText = discountPrice;
+            }
+
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>
